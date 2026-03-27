@@ -38,9 +38,8 @@ resource "aws_iam_role" "epam-tf-practice" {
   }
 }
 
-resource "aws_iam_policy_attachment" "epam-tf-practice" {
-  name       = "cmtr-9upx8vyr-iam-role-attachment"
-  roles      = [aws_iam_role.epam-tf-practice.name]
+resource "aws_iam_role_policy_attachment"  "epam-tf-practice" {
+  role      = aws_iam_role.epam-tf-practice.name
   policy_arn = aws_iam_policy.epam-tf-practice.arn
 }
 
