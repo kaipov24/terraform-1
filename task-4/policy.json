@@ -1,0 +1,11 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowWriteAccessToBucketObjects",
+      "Action": ["s3:PutObject, s3:DeleteObject"],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::${bucket_name}/*"
+    }
+  ]
+}
