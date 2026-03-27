@@ -14,7 +14,7 @@ resource "aws_instance" "epam-tf-practice" {
   instance_type = "t2.micro"
 
   key_name               = aws_key_pair.epam-tf-practice.key_name
-  subnet_id = "subnet-03f2bce0ce1686221"
+  subnet_id              = "subnet-03f2bce0ce1686221"
   vpc_security_group_ids = ["sg-03168bcced6e3e6bb"]
 
   tags = {
