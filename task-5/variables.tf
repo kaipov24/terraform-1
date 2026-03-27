@@ -37,3 +37,8 @@ variable "project_id" {
   description = "Project identifier used for tagging"
   type        = string
 }
+
+variable "public_eni_id" {
+  description = "Public instance ENI"
+  type        = string
+}

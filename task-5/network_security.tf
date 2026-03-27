@@ -120,7 +120,7 @@ resource "aws_network_interface_sg_attachment" "public_ssh" {
 
 resource "aws_network_interface_sg_attachment" "public_http" {
   security_group_id    = aws_security_group.public_http.id
-  network_interface_id = data.aws_network_interface.private.id
+  network_interface_id = var.public_eni_id
 }
 
 resource "aws_network_interface_sg_attachment" "private_ssh" {
