@@ -120,19 +120,8 @@ data "aws_security_group" "alb" {
   }
 }
 
-resource "aws_lb" "test" {
-  name               = var.alb_name
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = [data.aws_security_group.alb.id]
-  subnets            = data.aws_subnets.public.ids
-
-  enable_deletion_protection = true
-
-  tags = {
-    Terraform = var.terraform_tag
-    Project   = var.project_tag
-  }
+data "aws_lb" "test" {
+  name = var.alb_name
 }
 
 data "aws_vpc" "main" {
@@ -155,7 +144,7 @@ resource "aws_lb_target_group" "test" {
 }
 
 resource "aws_lb_listener" "http" {
-  load_balancer_arn = aws_lb.test.arn
+  load_balancer_arn = data.aws_lb.test.arn
   port              = var.alb_listener_port
   protocol          = var.alb_listener_protocol
 
