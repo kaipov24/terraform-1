@@ -55,7 +55,7 @@ resource "aws_launch_template" "example" {
     Project   = var.project_tag
   }
 
-user_data = base64encode(<<-EOF
+  user_data = base64encode(<<-EOF
 #!/bin/bash
 yum update -y
 yum install -y httpd jq
@@ -70,7 +70,7 @@ IP_ADDRESS=$(curl -s -H "X-aws-ec2-metadata-token: $${TOKEN}" http://169.254.169
 MESSAGE="This message was generated on instance $${INSTANCE_ID} with the following IP: $${IP_ADDRESS}"
 echo "$${MESSAGE}" > /var/www/html/index.html
 EOF
-)
+  )
 }
 
 data "aws_subnets" "public" {
