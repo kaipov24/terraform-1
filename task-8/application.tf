@@ -55,25 +55,22 @@ resource "aws_launch_template" "example" {
     Project   = var.project_tag
   }
 
-  user_data = base64encode(<<EOF
-    #!/bin/bash
-    yum update -y
-    yum install -y httpd jq
+user_data = base64encode(<<-EOF
+#!/bin/bash
+yum update -y
+yum install -y httpd jq
 
-    systemctl enable httpd
-    systemctl start httpd
+systemctl enable httpd
+systemctl start httpd
 
-    TOKEN=$(curl -sX PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
-    INSTANCE_ID=$(curl -sH "X-aws-ec2-metadata-token: $${TOKEN}" http://169.254.169.254/latest/meta-data/instance-id)
-    
-    IP_ADDRESS=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" \
-    http://169.254.169.254/latest/meta-data/local-ipv4)
-    
-    MESSAGE="This message was generated on instance $${INSTANCE_ID} with the following IP: $${IP_ADDRESS}"
+TOKEN=$(curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+INSTANCE_ID=$(curl -s -H "X-aws-ec2-metadata-token: $${TOKEN}" http://169.254.169.254/latest/meta-data/instance-id)
+IP_ADDRESS=$(curl -s -H "X-aws-ec2-metadata-token: $${TOKEN}" http://169.254.169.254/latest/meta-data/local-ipv4)
 
-    echo "$${MESSAGE}" > /var/www/html/index.html
-    EOF
-  )
+MESSAGE="This message was generated on instance $${INSTANCE_ID} with the following IP: $${IP_ADDRESS}"
+echo "$${MESSAGE}" > /var/www/html/index.html
+EOF
+)
 }
 
 data "aws_subnets" "public" {
