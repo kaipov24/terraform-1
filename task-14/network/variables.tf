@@ -3,36 +3,36 @@ variable "aws_region" {
   type        = string
 }
 
-variable "allowed_ip_range" {
-  description = "List of CIDR blocks allowed to access resources"
-  type        = list(string)
-}
-
 variable "vpc_name" {
-  description = "Name of the VPC"
+  description = "VPC name"
   type        = string
 }
 
 variable "vpc_cidr" {
-  description = "CIDR block for the VPC"
+  description = "VPC CIDR block"
   type        = string
 }
 
 variable "internet_gateway_name" {
-  description = "Name of the Internet Gateway"
+  description = "Internet Gateway name"
   type        = string
 }
 
 variable "route_table_name" {
-  description = "Name of the public route table"
+  description = "Route table name"
   type        = string
 }
 
 variable "public_subnets" {
-  description = "Map of public subnets"
+  description = "Public subnet definitions"
   type = map(object({
     name              = string
     cidr_block        = string
     availability_zone = string
   }))
+}
+
+variable "allowed_ip_range" {
+  description = "List of IP ranges for secure access (required by task)"
+  type        = list(string)
 }

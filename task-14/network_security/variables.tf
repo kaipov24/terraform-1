@@ -4,66 +4,26 @@ variable "aws_region" {
 }
 
 variable "vpc_id" {
-  description = "VPC id"
+  description = "VPC ID"
   type        = string
 }
 
-variable "vpc_cidr" {
-  description = "VPC cidr"
+variable "allowed_ip_range" {
+  description = "Allowed IP ranges for SSH and public HTTP"
+  type        = list(string)
+}
+
+variable "ssh_sg_name" {
+  description = "SSH security group name"
   type        = string
 }
 
-variable "subnet_public_a" {
-  description = "subnet-public-a"
+variable "public_http_sg_name" {
+  description = "Public HTTP security group name"
   type        = string
 }
 
-variable "subnet_public_b" {
-  description = "subnet-public-b"
-  type        = string
-}
-
-variable "subnet_public_c" {
-  description = "subnet-public-c"
-  type        = string
-}
-
-variable "subnet_public_a_cidr" {
-  description = "subnet-public-a-cidr"
-  type        = string
-}
-
-variable "subnet_public_b_cidr" {
-  description = "subnet-public-b-cidr"
-  type        = string
-}
-
-variable "subnet_public_c_cidr" {
-  description = "subnet-public-c-cidr"
-  type        = string
-}
-
-variable "igw" {
-  description = "Internet Gateway"
-  type        = string
-}
-
-variable "az_a" {
-  description = "az-a"
-  type        = string
-}
-
-variable "az_b" {
-  description = "az-b"
-  type        = string
-}
-
-variable "az_c" {
-  description = "az-c"
-  type        = string
-}
-
-variable "routing_table" {
-  description = "Routing Table"
+variable "private_http_sg_name" {
+  description = "Private HTTP security group name"
   type        = string
 }
