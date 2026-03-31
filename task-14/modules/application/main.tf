@@ -35,8 +35,8 @@ EOF
   )
 
   network_interfaces {
-    description             = "Network interface configuration"
-    delete_on_termination   = true
+    description           = "Network interface configuration"
+    delete_on_termination = true
   }
 }
 
