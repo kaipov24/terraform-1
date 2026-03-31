@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_vpc" "main" {
-  cidr_block       = var.vpc_cidr
+  cidr_block = var.vpc_cidr
 
   tags = {
     Name = var.vpc_name
@@ -13,7 +13,7 @@ resource "aws_vpc" "main" {
 resource "aws_subnet" "public" {
   for_each = var.public_subnets
 
-  vpc_id                  = aws_vpc.this.id
+  vpc_id                  = aws_vpc.main.id
   cidr_block              = each.value.cidr_block
   availability_zone       = each.value.availability_zone
   map_public_ip_on_launch = true
@@ -32,7 +32,7 @@ resource "aws_internet_gateway" "this" {
 }
 
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.this.id
+  vpc_id = aws_vpc.main.id
 
   tags = {
     Name = var.route_table_name

@@ -1,9 +1,9 @@
 aws_region = "us-east-1"
 
-vpc_name               = "cmtr-9upx8vyr-vpc"
-vpc_cidr               = "10.10.0.0/16"
-internet_gateway_name  = "cmtr-9upx8vyr-igw"
-route_table_name       = "cmtr-9upx8vyr-rt"
+vpc_name              = "cmtr-9upx8vyr-vpc"
+vpc_cidr              = "10.10.0.0/16"
+internet_gateway_name = "cmtr-9upx8vyr-igw"
+route_table_name      = "cmtr-9upx8vyr-rt"
 
 public_subnets = {
   public_a = {
