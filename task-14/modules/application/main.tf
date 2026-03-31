@@ -14,11 +14,6 @@ resource "aws_launch_template" "this" {
   image_id      = data.aws_ami.amazon_linux.id
   instance_type = var.instance_type
 
-  vpc_security_group_ids = [
-    var.ssh_sg_id,
-    var.private_http_sg_id
-  ]
-
   user_data = base64encode(<<-EOF
 #!/bin/bash
 yum update -y
@@ -37,6 +32,10 @@ EOF
   network_interfaces {
     description           = "Network interface configuration"
     delete_on_termination = true
+    security_groups = [
+      var.ssh_sg_id,
+      var.private_http_sg_id
+    ]
   }
 }
 
