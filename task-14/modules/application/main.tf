@@ -1,5 +1,4 @@
 data "aws_ami" "amazon_linux" {
-  description = "Fetch latest Amazon Linux 2023 AMI"
   most_recent = true
   owners      = ["amazon"]
 
